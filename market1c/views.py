@@ -4,9 +4,9 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth import logout
 
-@login_required
+
 def main(request):
-    return render(request, 'market1c/main.html')
+    return render(request, 'market1c/market1c.html')
 
 def signup(request):
     if request.method == 'POST':
