@@ -10,6 +10,13 @@
     <p><strong>Email:</strong> {{ user.email }}</p>
 </div>
 
+{% if not user.is_email_verified %}
+    <p>Ваш email не подтверждён.</p>
+    <a href="{% url 'send_verification_email' %}" class="btn btn-warning">Подтвердить email</a>
+{% else %}
+    <p>Email подтверждён ✅</p>
+{% endif %}
+
 <!-- Данные юридического лица -->
 {% if legal_entity %}
     <div class="legal-entity-info">
@@ -19,6 +26,7 @@
         <p><strong>Форма собственности:</strong> {{ legal_entity.get_ownership_form_display }}</p>
         <p><strong>Телефон:</strong> {{ legal_entity.phone }}</p>
         <p><strong>Адрес:</strong> {{ legal_entity.address }}</p>
+        <a href="{% url 'legal_entity_form' %}" class="btn btn-warning">Редактировать данные</a>  
     </div>
 {% else %}
     <p>Вы не оформили данные как юридическое лицо.</p>
@@ -26,3 +34,4 @@
 {% endif %}
 
 {% endblock %}
+

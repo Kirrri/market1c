@@ -18,12 +18,19 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    USER_TYPE_CHOICES = [
+        ('individual', 'Физическое лицо'),
+        ('legal', 'Юридическое лицо'),
+    ]
+
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     middle_name = models.CharField(max_length=30)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='individual')
+    is_email_verified = models.BooleanField(default=False)  # Новое поле!
 
     objects = CustomUserManager()
 

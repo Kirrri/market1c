@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'market1c',
     'profile',
+    'market',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'market1c.CustomUser'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Если используешь Gmail
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'khfbkg@gmail.com'
+EMAIL_HOST_PASSWORD = 'cpgdruojronfgbik'  # Лучше использовать переменные среды!
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
