@@ -1,0 +1,28 @@
+{% block content %}
+<h2>Личный кабинет</h2>
+
+<!-- Данные пользователя -->
+<div class="user-info">
+    <h3>Личные данные</h3>
+    <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+    <p><strong>Имя:</strong> {{ user.first_name }}</p>
+    <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+</div>
+
+<!-- Данные юридического лица -->
+{% if legal_entity %}
+    <div class="legal-entity-info">
+        <h3>Данные юридического лица</h3>
+        <p><strong>ИНН:</strong> {{ legal_entity.inn }}</p>
+        <p><strong>Наименование организации:</strong> {{ legal_entity.organization_name }}</p>
+        <p><strong>Форма собственности:</strong> {{ legal_entity.get_ownership_form_display }}</p>
+        <p><strong>Телефон:</strong> {{ legal_entity.phone }}</p>
+        <p><strong>Адрес:</strong> {{ legal_entity.address }}</p>
+    </div>
+{% else %}
+    <p>Вы не оформили данные как юридическое лицо.</p>
+    <a href="{% url 'legal_entity_form' %}" class="btn btn-primary">Оформить как юр. лицо</a>
+{% endif %}
+
+{% endblock %}
