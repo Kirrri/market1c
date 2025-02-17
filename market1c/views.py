@@ -5,7 +5,7 @@ from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth import logout
 
 
-def main(request):
+def market1c(request):
     return render(request, 'market1c/market1c.html')
 
 def signup(request):
@@ -27,7 +27,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('main')
+                return redirect('market1c')
             else:
                 return render(request, 'login.html', {'error': 'Неверный логин или пароль'})
     else:

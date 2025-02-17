@@ -5,7 +5,7 @@ from .views import logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.main, name="main"),
+    path('', views.market1c, name="market1c"),
     path('profile/', include('profile.urls')),
     path('market/', include('market.urls')),
     path('accounts/login/', views.login_view, name='login'),

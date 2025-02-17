@@ -4,12 +4,50 @@ from .models import CustomUser
 from django.contrib.auth.forms import AuthenticationForm
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(max_length=30, required=False)
-    last_name = forms.CharField(max_length=30, required=False)
-    middle_name = forms.CharField(max_length=30, required=True)
-    accept_terms = forms.BooleanField(required=False, label="Я являюсь юридическим лицом и принимаю условия использования")
-
+    email = forms.EmailField(
+        required=True,
+        label="Имя пользователя",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'E-mail'
+        }))
+    first_name = forms.CharField(max_length=30, required=False, 
+        label="Имя пользователя",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Имя'
+        }))
+    last_name = forms.CharField(max_length=30, required=False,
+        label="Имя пользователя",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Фамилия'
+        }))
+    middle_name = forms.CharField(max_length=30, required=True, label="Имя пользователя",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Отчество'
+        }))
+    password1 = forms.CharField(
+        label="Пароль",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Password'
+        })
+    )
+    password2 = forms.CharField(
+        label="Пароль",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Подтвердить Password'
+        })
+    )
+    accept_terms = forms.BooleanField(required=False, label="Я являюсь юридическим лицом",
+    widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'type': 'checkbox'
+        })
+    )
     class Meta:
         model = CustomUser
         fields = ('email', 'first_name', 'last_name', 'middle_name', 'password1', 'password2', 'accept_terms')
@@ -27,13 +65,13 @@ class LoginForm(AuthenticationForm):
         label="Имя пользователя",
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Введите имя пользователя'
+            'placeholder': 'E-mail'
         })
     )
     password = forms.CharField(
         label="Пароль",
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Введите пароль'
+            'placeholder': 'Password'
         })
     )
